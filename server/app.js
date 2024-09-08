@@ -5,6 +5,7 @@ import { Server } from "socket.io";
 import { createServer } from "http";
 import ConnectDB from "./config/database.js";
 import userRoute from "./routes/userRoute.js";
+import messageRoute from "./routes/messageRoute.js";
 import cookieParser from "cookie-parser";
 const app = express();
 const server = createServer(app);
@@ -19,6 +20,7 @@ const io = new Server(server, {
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/v1/user", userRoute);
+app.use("/api/v1/message", messageRoute);
 app.get("/", (req, res) => {
   res.send("Hello , World");
 });

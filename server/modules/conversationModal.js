@@ -18,4 +18,4 @@ const conversationSchema = new Schema(
   { timestamps: true }
 );
 
-export const Coversation = model("Coversation", conversationSchema);
+export const Conversation = model("conversation", conversationSchema);

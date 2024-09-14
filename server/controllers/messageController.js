@@ -48,13 +48,14 @@ export const getMessage = async (req, res) => {
   try {
     const recieverId = req.params.id;
     const senderId = req.id;
-    const coversation = await Conversation.findOne({
+    const conversation = await Conversation.findOne({
       participants: { $all: [senderId, recieverId] },
-    }).populate({
-      path: "messages",
-      // Or remove this if you're excluding fields
-    });
-    console.log(coversation, "conversation");
+    }).populate("messages");
+    console.log(conversation, "conversation");
+
+    return res
+      .status(200)
+      .json({ message: "get message succesfully", data: conversation });
   } catch (error) {
     console.log(error, "error");
   }
